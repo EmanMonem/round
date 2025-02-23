@@ -61,12 +61,26 @@ public class TestClass {
     public void test3(){
         driver.navigate().to("https://duckduckgo.com/");
         By searchTextBox =By.xpath("//input[@id='searchbox_input']");
-        By firstResult = By.xpath("//*[@id=\"r1-0\"]");
+        By firstResult = By.xpath("//span[contains(text(),'WebDriver - Selenium')]");
         driver.findElement(searchTextBox).sendKeys("Selenium WebDriver",Keys.ENTER);
         driver.findElement(firstResult).click();
         String expectedResult = "https://www.selenium.dev/documentation/webdriver/";
-        String actualResult = driver.getCurrentUrl(); //return https://www.selenium.dev/documentation/webdriver/troubleshooting/
+        String actualResult = driver.getCurrentUrl();
         Assert.assertEquals(actualResult,expectedResult);
+
+   }
+
+    @Test
+    public void test4(){
+        driver.navigate().to("https://duckduckgo.com/");
+        By searchTextBox =By.xpath("//input[@id='searchbox_input']");
+        By fourthResult = By.xpath("//span[contains(text(),'TestNG Tutorial')]");
+        driver.findElement(searchTextBox).sendKeys("TestNG",Keys.ENTER);
+        String expectedResult = "TestNG Tutorial";
+        String actualResult = driver.findElement(fourthResult).getText();
+        Assert.assertTrue(actualResult.contains(expectedResult));
+
     }
+
 
 }
