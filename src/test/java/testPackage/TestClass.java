@@ -82,5 +82,18 @@ public class TestClass {
 
     }
 
+    @Test
+    public void test5(){
+        driver.navigate().to("https://duckduckgo.com/");
+        By searchTextBox =By.xpath("//input[@id='searchbox_input']");
+        By SecondResult = By.xpath("//span[contains(text(),'BDD Testing & Collaboration Tools for Teams')]");
+
+        driver.findElement(searchTextBox).sendKeys("Cucumber IO",Keys.ENTER);
+        driver.findElement(SecondResult).click();
+        String actualResult = driver.getCurrentUrl();
+        String expectedResult = "https://www.linkedin.com";
+        Assert.assertTrue(actualResult.contains(expectedResult));
+
+    }
 
 }
